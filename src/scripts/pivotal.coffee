@@ -95,6 +95,6 @@ module.exports = (robot) ->
           msg.send message
     return
 
-  robot.hear /wasup\?/i, (msg) ->
+  robot.hear /wasup(\?)?/i, (msg) ->
     msg.send "notin"
     return
