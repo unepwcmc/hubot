@@ -1,1 +1,1 @@
-web: bin/hubot -a campfire -n 'James C'
+web: bin/hubot -a campfire -n 'Hubot'
