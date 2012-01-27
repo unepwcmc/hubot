@@ -81,8 +81,8 @@ module.exports = (robot) ->
         msg.send "Pivotal says: #{err}"
         return
       (new Parser).parseString body, (err, json)->
+        msg.send "Here are your projects:"
         for project in json.project
-          message = "\n#########################################################################\n"
-          message += "Project Name: #{project.name} ; Project ID: #{project.id}"
+          message = "Project Name: #{project.name} ; Project ID: #{project.id}"
           msg.send message
     return
