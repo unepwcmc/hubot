@@ -2,6 +2,8 @@ NPM_EXECUTABLE_HOME := node_modules/.bin
 
 PATH := ${NPM_EXECUTABLE_HOME}:${PATH}
 
+vows: 
+	@cd test/vows && vows
 test: deps
 	@find test -name '*_test.coffee' | xargs -n 1 -t coffee
 
