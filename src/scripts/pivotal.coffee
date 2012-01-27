@@ -21,7 +21,6 @@ module.exports = (robot) ->
     Parser = require("xml2js").Parser
     #token = process.env.HUBOT_PIVOTAL_TOKEN
     token = HARD_CODED_PIVOTAL_TOKEN
-    msg.send msg.match[2]
     if msg.match[2] && msg.match[2] != ""
       state = msg.match[2]
     else
