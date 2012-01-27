@@ -83,6 +83,6 @@ module.exports = (robot) ->
       (new Parser).parseString body, (err, json)->
         msg.send "Here are your projects:"
         for project in json.project
-          message = "Project Name: #{project.name} ; Project ID: #{project.id}"
+          message = "#{project.name} ; #{project.id}"
           msg.send message
     return
