@@ -86,3 +86,8 @@ module.exports = (robot) ->
           message = "#{project.name} ; #{project.id}"
           msg.send message
     return
+
+  robot.hear /(.ª)Pivotal Tracker(.ª)/i, (msg) ->
+    msg.send "PivWhat? Who uses that shit?"
+    msg.send "Maybe you'd like to run: hubot list all projects"
+    return
