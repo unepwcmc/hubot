@@ -69,3 +69,18 @@ module.exports = (robot) ->
                 storyReturned = true
                 return
     return
+
+  robot.respond /(ls|list all) projects/i, (msg) ->
+    Parser = require("xml2js").Parser
+    #token = process.env.HUBOT_PIVOTAL_TOKEN
+    token = "ddb2187632ade586c12fa4442b1055b8"
+    msg.http("http://www.pivotaltracker.com/services/v3/projects").headers("X-TrackerToken":token).get() (err, res, body) ->
+      if err
+        msg.send "Pivotal says: #{err}"
+        return
+      (new Parser).parseString body, (err, json)->
+        for project in json.project
+          message = "\n#########################################################################\n"
+          message += "Project Name: #{project.name} ; Project ID: #{project.id}"
+          msg.send message
+    return
