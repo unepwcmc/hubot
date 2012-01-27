@@ -1,25 +1,19 @@
 #Tests hubot interaction with PivotalTracker
 #
+#request = require 'request'
+http = require 'http'
 vows = require 'vows'
 assert = require 'assert'
 
 vows
-  .describe('Division by zero')
+  .describe('Ask hubot for all the projects')
   .addBatch
-    'when dividing a number by zero':
-      topic: -> 42/ 0
+    'If there are projects' :
+      topic: () ->
+        request "http://www.google.com", @callback
+        #http.get({'host': 'http://www.google.com', 'port': 8080, 'path': '/'}, @callback)
 
-      'we get Infinity': (topic) ->
-        assert.equal topic, Infinity
-
-      'but when dividing zero by zero':
-        topic: -> 0 / 0
-
-    'we get a value which':
-      'is not a number': (topic) ->
-        assert.isNaN topic
-
-      'is not equal to itself': (topic) -> 
-        assert.notEqual topic, topic
-
+      '200 OK Returned': (error, res) ->
+        console.log(res)
+        #assert.equal res, 200
   .export(module)
