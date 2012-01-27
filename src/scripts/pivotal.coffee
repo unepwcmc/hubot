@@ -12,11 +12,14 @@
 # show me stories for <project> -- shows current stories being worked on
 # list all projects -- list all your (atm Simao's) projects
 # ls projects -- alias for list all projects
+#
+
 module.exports = (robot) ->
+  HARD_CODED_PIVOTAL_TOKEN="a1ed4421da846021e6fa9facb5f1b2c2"
   robot.respond /show\s+(me\s+)?stories\s+(for\s+)?(.*)/i, (msg)->
     Parser = require("xml2js").Parser
     #token = process.env.HUBOT_PIVOTAL_TOKEN
-    token = "ddb2187632ade586c12fa4442b1055b8"
+    token = HARD_CODED_PIVOTAL_TOKEN
     project_name = msg.match[3]
     if project_name == ""
       project_name = RegExp(process.env.HUBOT_PIVOTAL_PROJECT, "i")
@@ -75,7 +78,7 @@ module.exports = (robot) ->
   robot.respond /(ls|list all) projects/i, (msg) ->
     Parser = require("xml2js").Parser
     #token = process.env.HUBOT_PIVOTAL_TOKEN
-    token = "ddb2187632ade586c12fa4442b1055b8"
+    token = HARD_CODED_PIVOTAL_TOKEN
     msg.http("http://www.pivotaltracker.com/services/v3/projects").headers("X-TrackerToken":token).get() (err, res, body) ->
       if err
         msg.send "Pivotal says: #{err}"
@@ -87,7 +90,10 @@ module.exports = (robot) ->
           msg.send message
     return
 
-  robot.hear /(.ª)Pivotal Tracker(.ª)/i, (msg) ->
-    msg.send "PivWhat? Who uses that shit?"
-    msg.send "Maybe you'd like to run: hubot list all projects"
+  robot.hear /wasup?/i, (msg) ->
+    msg.send "notin"
+    return
+
+  robot.hear /(.*)(Pivotal Tracker|PT|PivotalTracker)(.*)/i, (msg) ->
+    msg.send "Pivotal what? don't use that, James hates it!"
     return
