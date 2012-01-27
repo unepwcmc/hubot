@@ -10,6 +10,8 @@
 # Otherwise, include the project name in your message to Hubot.
 #
 # show me stories for <project> -- shows current stories being worked on
+# list all projects -- list all your (atm Simao's) projects
+# ls projects -- alias for list all projects
 module.exports = (robot) ->
   robot.respond /show\s+(me\s+)?stories\s+(for\s+)?(.*)/i, (msg)->
     Parser = require("xml2js").Parser
