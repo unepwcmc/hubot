@@ -20,6 +20,7 @@
     "scoped-http-client": "0.9.6",
     "log": "1.2.0",
     "connect": "1.8.5",
+    "vows": "latest",
     "xml2js": ">0.1.0"
   },
 
